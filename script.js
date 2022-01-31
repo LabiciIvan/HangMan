@@ -41,6 +41,7 @@ function checkInput(userWord) {
 function startGame(userWord) {
   word =  transformInput(userWord);
   lettersFound = word.length;
+  document.getElementById('gameRules').innerHTML ="";
   createGuess(word);
   showKeyboard();
   addHealthPoints();
@@ -100,18 +101,18 @@ function checkGuess(key) {
     --healthPoints;
     if (healthPoints == 0) {
       let lost = "Game Over..! Try again!"
-      stopGame(lost);
+      stopGame(lost, word);
     }
   } else if (lettersFound == 0) {
-    let win = "winner winner chicken dinner!";
-    stopGame(win);
+    let win = "Winner winner chicken dinner!";
+    stopGame(win, word);
   }
 }
 
-function stopGame(messageDisplay) {
+function stopGame(messageDisplay, word) {
   document.getElementById('guessDiv').innerHTML ="";
   document.getElementById('keyboardDiv').innerHTML="";
-  document.getElementById('statusDiv').innerHTML= "";
+  document.getElementById('statusDiv').innerHTML= "Word: " +word;
   let announcer = document.createElement('div');
     announcer.id = "information";
     announcer.innerHTML = messageDisplay;
