@@ -1,7 +1,6 @@
 const number = ["0","1","2","3","4","5","6","7","8","9"];
 const keyLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-let healthPoints = 6;
-let word;
+let healthPoints = 6, word, lettersFound;
 
 function informUser() {
   document.getElementById('userInfo').innerHTML = "No spaces or numbers";
@@ -41,6 +40,7 @@ function checkInput(userWord) {
 
 function startGame(userWord) {
   word =  transformInput(userWord);
+  lettersFound = word.length;
   createGuess(word);
   showKeyboard();
   addHealthPoints();
@@ -92,22 +92,28 @@ function checkGuess(key) {
     if (valueKeyClicked == word.charAt(i)) {
       document.getElementById(i).innerHTML = valueKeyClicked;
       indicator = true;
+      --lettersFound;
     }
   }
   if (indicator == false) {
     removeHealthPoints(healthPoints);
     --healthPoints;
     if (healthPoints == 0) {
-      let lost = "Game Over..!"
-      stopGame();
+      let lost = "Game Over..! Try again!"
+      stopGame(lost);
     }
+  } else if (lettersFound == 0) {
+    let win = "winner winner chicken dinner!";
+    stopGame(win);
   }
 }
 
-function stopGame() {
+function stopGame(messageDisplay) {
   document.getElementById('guessDiv').innerHTML ="";
   document.getElementById('keyboardDiv').innerHTML="";
+  document.getElementById('statusDiv').innerHTML= "";
   let announcer = document.createElement('div');
     announcer.id = "information";
+    announcer.innerHTML = messageDisplay;
     document.getElementById('keyboardDiv').append(announcer);
 }
