@@ -99,12 +99,12 @@ function checkGuess(key) {
     --healthPoints;
     if (healthPoints == 0) {
       let lost = "Game Over..!"
-      gameStoped();
+      stopGame();
     }
   }
 }
 
-function gameStoped() {
+function stopGame() {
   document.getElementById('guessDiv').innerHTML ="";
   document.getElementById('keyboardDiv').innerHTML="";
   let announcer = document.createElement('div');
