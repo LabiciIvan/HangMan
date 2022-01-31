@@ -48,6 +48,7 @@ text-align: center;
 #statusDiv {
   display: flex;
   justify-content: center;
+  font-size: 30px;
 }
 
 #points-icon1,#points-icon2,#points-icon3,
@@ -75,4 +76,23 @@ text-align: center;
   background-color: black;
   color: white;
   cursor: pointer;
+}
+
+#info1 {
+  width: 300px;
+}
+
+#points-info {
+  position: relative;
+  right: 20px;
+  top: 25px;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+#gameRules {
+  display: flex;
+  justify-content: center;
 }
