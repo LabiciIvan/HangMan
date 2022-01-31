@@ -115,5 +115,10 @@ function stopGame(messageDisplay) {
   let announcer = document.createElement('div');
     announcer.id = "information";
     announcer.innerHTML = messageDisplay;
+    announcer.onclick = reloadGame;
     document.getElementById('keyboardDiv').append(announcer);
+}
+
+function reloadGame() {
+  window.location.reload();
 }
