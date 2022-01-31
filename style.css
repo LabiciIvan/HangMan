@@ -1,0 +1,67 @@
+
+#gameBoard {
+ display: flex;
+ justify-content: center;
+ margin-top: 200px;
+}
+
+#userInfo {
+  font-size: 25px;
+}
+
+#guessDiv {
+display: flex;
+justify-content: center;
+}
+
+.letters {
+border:2px solid black;
+border-radius: 5px;
+width: 40px;
+height: 40px;
+margin: 4px;
+font-size: 30px;
+text-align: center;
+}
+
+#keyboardDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.keyBoards {
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+  border:2px solid black;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 50px;
+}
+
+.keyBoards:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#statusDiv {
+  display: flex;
+  justify-content: center;
+}
+
+#points-icon1,#points-icon2,#points-icon3,
+#points-icon4,#points-icon5,#points-icon6 {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  margin: 2px;
+  border-radius: 50%;
+}
+
+#information {
+  margin-top: 200px;
+  background-color: black;
+  width: 200px;
+  height: 30px;
+}
