@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
@@ -109,9 +110,38 @@ body {
   box-shadow: 0px 3px 7px -1px #787474
 }
 
+.reset-btn {
+  height: 90%;
+  color: rgb(72, 70, 70);
+  background-color: #efc53c;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 191, 191);
+  font-size: 25px;
+  box-shadow: 0px 3px 7px -1px #787474;
+  cursor:pointer;
+}
+
+.reset-btn:hover {
+  height: 90%;
+  color: rgb(72, 70, 70);
+  background-color: #ffc813;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 191, 191);
+  font-size: 25px;
+  box-shadow: 0px 3px 7px -1px #787474
+}
+
 .specific-key:hover {
   color: rgb(50, 50, 50);
   background-color: rgb(193, 191, 191);
+}
+
+.message {
+  grid-area: 4/3/5/7;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  font-family: 'Press Start 2P', cursive;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -129,6 +159,17 @@ body {
   .start-btn {
     width: 60%;
   }
+}
+
+:disabled {
+  background-color: gainsboro;
+  cursor:not-allowed;
+  color: gray;
+}
+
+:disabled:hover {
+  background-color: gainsboro;
+  color: gray;
 }
 
 

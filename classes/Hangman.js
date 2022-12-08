@@ -51,11 +51,13 @@ export default class Hangman extends Creator {
      triggerStart = (e) => {
 
         this.word = this.getElement(this.inputClassName).value.toUpperCase();
-        this.letterToGuess = this.word.length + 1;
+        this.letterToGuess = this.word.length;
 
         let result = new Validator().validate(this.word);
 
         if(!result) { new Validator().throwError('Only characters from a - z allowed', '.error-div'); return;}
+
+        console.log(this.word.length);
         
         this.loadGame();
     }
@@ -93,7 +95,13 @@ export default class Hangman extends Creator {
     showKeyboard = () => {
 
         let element = this.create('div', 'keyboard');
+        let icon = this.create('i', 'bi bi-arrow-repeat');
+        let resetBtn = this.create('button', 'reset-btn');
+            resetBtn.onclick = () => {location.reload();}
         
+        resetBtn.innerHTML = '';
+        resetBtn.append(icon);
+        element.append(resetBtn);
         // Iterate over the this.keyboard string and create a button for each letter.
         for (let i = 0; i < this.keyboard.length; ++i) {
 
@@ -102,6 +110,8 @@ export default class Hangman extends Creator {
 
             element.append(btn);
         }
+
+            
 
         let parent = this.getElement(this.place);
             parent.append(element);
@@ -127,8 +137,7 @@ export default class Hangman extends Creator {
             this.word[i] === pressedButton ? found = true : '';
         }
 
-        found ? this.revealLetter(pressedButton) : --this.health;
-        
+        found === true ? this.revealLetter(pressedButton) : --this.health;
         this.checkProgress();
     }
 
@@ -139,7 +148,7 @@ export default class Hangman extends Creator {
      */
     revealLetter = (letter) => {
 
-        let element = document.querySelectorAll(`.${letter}`);
+        let element = document.querySelectorAll(`.guess.${letter}`);
 
         this.letterToGuess -= element.length;
 
@@ -152,20 +161,32 @@ export default class Hangman extends Creator {
      * @fires querySelectorAll
      */
     checkProgress = () => {
+        console.log('health', this.health, 'letter to guess', this.letterToGuess)
 
         if (this.health <= 0) {
 
             let allButtons = document.querySelectorAll('.specific-key');
-
             allButtons.forEach(element => { element.disabled = true; });
-        }
-        console.log(this.letterToGuess);
+            this.stopGame("You\'ve lost !");
 
-        if(this.health > 0 && this.letterToGuess < 0) {
-            console.log('winnner');
+
+        }
+
+        if(this.health > 0 && this.letterToGuess <= 0) {
             let allButtons = document.querySelectorAll('.specific-key');
-
             allButtons.forEach(element => { element.disabled = true; });
+            this.stopGame("You won !");
         }
+    }
+
+    /**
+     * @param {string} message - message you want to show at the end of the game.
+     */
+    stopGame = (message) => {
+
+        let element = this.getElement(this.place);
+        let msgDiv = this.create('div', 'message', message);
+        
+        element.append(msgDiv);
     }
 }
