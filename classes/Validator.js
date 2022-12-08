@@ -4,13 +4,17 @@
  */
 export default class Validator {
 
+    /**
+     * @constructor
+     */
     constructor() {
         this.pattern = /^[a-zA-Z]+$/;
     }
 
     /**
-     * 
+     * @method validate
      * @param {string} word - the word you want to validated.
+     * @returns {boolean} result
      */
     validate = (word) => {
 
@@ -20,7 +24,8 @@ export default class Validator {
     }
 
     /**
-     * 
+     * @method throwError
+     * @fires querySelector
      * @param {string} errorName - whata error to generate.
      * @param {string} location  - where to throw errors.
      * @return
@@ -35,5 +40,4 @@ export default class Validator {
 
         return;
     }
-
 }
