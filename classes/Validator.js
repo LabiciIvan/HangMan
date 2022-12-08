@@ -1,12 +1,10 @@
 /**
- * Creates an instance of Validator.
- * @class
+ * Creates a new instance of Validator.
+ * @class Validator
  */
 export default class Validator {
 
-    /**
-     * @constructor
-     */
+    /** @constructs */
     constructor() {
         this.pattern = /^[a-zA-Z]+$/;
     }

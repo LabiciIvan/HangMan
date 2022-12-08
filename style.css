@@ -1,98 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-#gameBoard {
- display: flex;
- justify-content: center;
- margin-top: 200px;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-#userInfo {
-  font-size: 25px;
+body {
+  background-color: gainsboro;
+  width: 100%;
+  height: 100vh;
+  display: grid;
 }
 
-#guessDiv {
-display: flex;
-justify-content: center;
+.game {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
 }
 
-.letters {
-border:2px solid black;
-border-radius: 5px;
-width: 40px;
-height: 40px;
-margin: 4px;
-font-size: 30px;
-text-align: center;
-}
-
-#keyboardDiv {
-  display: flex;
-  justify-content: center;
-}
-
-.keyBoards {
-  margin: 5px;
-  width: 60px;
-  height: 60px;
-  border:2px solid black;
-  border-radius: 50%;
+.input-word {
+  grid-area: 4/4/5/6;
+  align-self: flex-start;
+  justify-self: center;
   text-align: center;
-  font-size: 50px;
+  outline: none;
+  width: 90%;
+  height:60%;
+  border-radius: 3px;
+  border: 1px solid gray;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  color: rgb(77, 76, 76);
 }
 
-.keyBoards:hover {
-  background-color: black;
-  color: white;
+.start-btn {
+  grid-area: 5/4/6/6;
+  align-self: center;
+  justify-self: center;
+  width: 50%;
+  height:40%;
+  font-family: 'Press Start 2P', cursive;
+  border: 1px solid gray;
+  font-size: 14px;
+  border-radius: 3px;
+  color: rgb(77, 76, 76);
+  background-color: #f0eeee;
   cursor: pointer;
 }
 
-#statusDiv {
+.start-btn:hover {
+  background-color: #ffffff;
+}
+
+.error-div {
+  grid-area: 4/4/5/6;
+  align-self: flex-end;
+  justify-self: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(235, 40, 5);
+}
+
+.word {
+  grid-area: 3/2/4/8;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.guess {
+  width: 100px;
+  height: 100%;
+  margin-right: 5px;
+  border-bottom: 2px solid #484646;
+  padding-bottom: 5px;
   display: flex;
   justify-content: center;
-  font-size: 30px;
+  align-items: flex-end;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5rem;
+  color: #484646;
 }
 
-#points-icon1,#points-icon2,#points-icon3,
-#points-icon4,#points-icon5,#points-icon6 {
-  width: 30px;
-  height: 30px;
-  background-color: black;
-  margin: 2px;
-  border-radius: 50%;
-}
-
-#information {
-  margin-top: 200px;
+.keyboard {
+  padding: 10px;
+  display: grid;
+  grid-area: 5/3/8/7;
   background-color: white;
-  width: 200px;
-  height: 60px;
-  color:black;
-  border: 2px solid black;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 25px;
-}
-
-#information:hover {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-}
-
-#info1 {
-  width: 300px;
-}
-
-#points-info {
-  position: relative;
-  right: 20px;
-  top: 25px;
-  width: 10px;
-  height: 10px;
-  background-color: black;
-  border-radius: 50%;
-}
-
-#gameRules {
-  display: flex;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 15px;
   justify-content: center;
+  align-items: center;
+}
+
+.specific-key {
+  height: 90%;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 191, 191);
+  color: rgb(72, 70, 70);
+  background-color: #f0eeee;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0px 3px 7px -1px #787474
+}
+
+.specific-key:hover {
+  color: rgb(50, 50, 50);
+  background-color: rgb(193, 191, 191);
+}
+
+@media only screen and (max-width: 1400px) {
+
+  .specific-key {
+    font-size: 20px;
+  }
+
+  .keyboard {
+    padding: 8px;
+    grid-area: 5/2/8/8;
+    gap: 15px;
+  }
+
+  .start-btn {
+    width: 60%;
+  }
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+  .input-word {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .input-word {
+    grid-area: 4/3/5/7;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .keyboard {
+    padding: 8px;
+    grid-area: 4/1/7/9;
+    gap: 10px;
+  }
+  
+  .word {
+    grid-area: 2/2/3/8;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+
+  .keyboard {
+    grid-area: 4/1/6/9;
+  }
+
+  .specific-key {
+    font-size: 12px;
+    height: 50px;
+  }
+
+  .guess {
+    font-size: 2rem;
+  }
+
+  .input-word {
+    grid-area: 4/2/5/8;
+  }
+
+  .start-btn {
+    width: 85%;
+    grid-area: 5/3/6/7;
+  }
 }
