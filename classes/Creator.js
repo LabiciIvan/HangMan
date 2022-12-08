@@ -1,12 +1,10 @@
 /**
  * Creates a new instance of Creator.
- * @class
+ * @class Creator
  */
 export default class Creator {
 
-    /**
-     * @constructor
-     */
+    /** @constructs */
     constructor() {}
 
     /**

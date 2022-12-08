@@ -2,12 +2,13 @@ import Creator from "./Creator.js";
 import Validator from "./Validator.js";
 
 /**
- * Creates a Hangman instance.
- * @class
+ * Creates a new instance of Hangman.
+ * @class Hangman
  */
 export default class Hangman extends Creator {
 
     /**
+     * @constructs
      * @param {string} place - Where to load the game.
      */
     constructor(place) {
@@ -74,7 +75,7 @@ export default class Hangman extends Creator {
 
         // Iterate this.word string and create a div for each letter and append to wordDiv
          for (let i = 0; i < this.word.length; ++i)  {
-            let eachLetter = this.create('div', `${this.word[i]}`);
+            let eachLetter = this.create('div',`guess ${this.word[i]}`);
                 
             wordDiv.append(eachLetter);
          }
