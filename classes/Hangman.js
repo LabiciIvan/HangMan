@@ -1,12 +1,13 @@
 import Creator from "./Creator.js";
 import Validator from "./Validator.js";
+
 /**
  * Creates a Hangman instance.
  * @class
  */
 export default class Hangman extends Creator {
+
     /**
-     * 
      * @param {string} place - Where to load the game.
      */
     constructor(place) {
@@ -16,12 +17,19 @@ export default class Hangman extends Creator {
         this.inputClassName = '.input-word';
         this.keyboard = 'QWERTYUIOPASDFGHJKLZXCVBNM';
     }
+    
 
+
+    /**
+     * @method initialiseGame
+     * @fires getElement 
+     * @fires create
+     */
     initialiseGame() {
         
         let element = this.getElement(this.place);
         
-        let input = this.create('input', 'input-word');
+        let input = this.create('input', 'input-word', 'Enter a word');
             
         let button = this.create('button', 'start-btn', 'START');
             button.onclick = (e) => this.triggerStart(e);
@@ -35,13 +43,14 @@ export default class Hangman extends Creator {
 
     /**
      * @method triggerStart
+     * @fires getElement
      * @fires loadGame
      * @param {Element} e - the element that triggered this method.
      */
      triggerStart = (e) => {
 
         this.word = this.getElement(this.inputClassName).value.toUpperCase();
-        this.letterToGuess = this.word.length
+        this.letterToGuess = this.word.length + 1;
 
         let result = new Validator().validate(this.word);
 
@@ -53,6 +62,8 @@ export default class Hangman extends Creator {
     /**
      * @method loadGame
      * @fires getElement
+     * @fires create
+     * @fires this.showKeyboard
      */
     loadGame = () => {
 
@@ -72,20 +83,11 @@ export default class Hangman extends Creator {
          this.showKeyboard();
     }
 
-    /**
-     * @method getElement
-     * @fires querySelector
-     * @param {string} classOrId - class or id of the element you want to get.
-     * @return {Element}
-     */
-    getElement = (classOrId) => {
-
-        return document.querySelector(classOrId);
-    }
 
     /**
      * @method showKeyboard
      * @fires create
+     * @fires getElement
      */
     showKeyboard = () => {
 
@@ -124,7 +126,9 @@ export default class Hangman extends Creator {
             this.word[i] === pressedButton ? found = true : '';
         }
 
-        found ? this.revealLetter(pressedButton) : this.checkProgress();
+        found ? this.revealLetter(pressedButton) : --this.health;
+        
+        this.checkProgress();
     }
 
     /**
@@ -138,21 +142,29 @@ export default class Hangman extends Creator {
 
         this.letterToGuess -= element.length;
 
-        element.forEach( item => {
-            item.innerHTML = letter;
-        });
+        element.forEach( item => { item.innerHTML = letter; });
     }
 
+
+    /**
+     * @method checkProgress
+     * @fires querySelectorAll
+     */
     checkProgress = () => {
-        --this.health;
 
         if (this.health <= 0) {
 
             let allButtons = document.querySelectorAll('.specific-key');
 
-            allButtons.forEach(element => {
-                element.disabled = true;
-            });
+            allButtons.forEach(element => { element.disabled = true; });
+        }
+        console.log(this.letterToGuess);
+
+        if(this.health > 0 && this.letterToGuess < 0) {
+            console.log('winnner');
+            let allButtons = document.querySelectorAll('.specific-key');
+
+            allButtons.forEach(element => { element.disabled = true; });
         }
     }
 }

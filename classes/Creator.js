@@ -3,13 +3,11 @@
  * @class
  */
 export default class Creator {
+
     /**
-     * 
      * @constructor
      */
-    constructor() {
-
-    }
+    constructor() {}
 
     /**
      * @method create
@@ -17,9 +15,10 @@ export default class Creator {
      * @param {string} name      - The name of element you want to create.
      * @param {string} className - className for this element.
      * @param {string} innerText - innerHtml for this element.
-     * @returns {Element}
+     * @returns {Element} element
      */
     create = (name, className, innerText) => {
+
         this.name = name;
         this.className = className;
         this.innerText = innerText;
@@ -28,7 +27,20 @@ export default class Creator {
             element.className = this.className;
         
         this.innerText ? element.innerHTML = innerText : '';
+        this.name === 'input' ? element.placeholder = innerText : '';
+        this.name === 'button' ? element.innerHTML = innerText : '';
 
         return element;
+    }
+
+    /**
+     * @method getElement
+     * @fires querySelector
+     * @param {string} classOrId - class or id of the element you want to get.
+     * @return {Element} element
+     */
+    getElement = (classOrId) => {
+
+        return document.querySelector(classOrId);
     }
 }
