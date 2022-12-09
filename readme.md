@@ -1,4 +1,4 @@
-                                                        The Hangman
+                                                              The Hangman
 
 - ### <em>1 Game Description</em>
 
