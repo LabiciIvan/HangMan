@@ -116,6 +116,8 @@ export default class Hangman extends Creator {
         let parent = this.getElement(this.place);
             parent.append(element);
 
+        this.checkHealth();
+
     }
 
     /**
@@ -137,7 +139,14 @@ export default class Hangman extends Creator {
             this.word[i] === pressedButton ? found = true : '';
         }
 
-        found === true ? this.revealLetter(pressedButton) : --this.health;
+        if (found === true ) {
+            
+            this.revealLetter(pressedButton);
+        } else {
+
+            --this.health;
+            this.checkHealth();
+        }
         this.checkProgress();
     }
 
@@ -168,8 +177,6 @@ export default class Hangman extends Creator {
             let allButtons = document.querySelectorAll('.specific-key');
             allButtons.forEach(element => { element.disabled = true; });
             this.stopGame("You\'ve lost !");
-
-
         }
 
         if(this.health > 0 && this.letterToGuess <= 0) {
@@ -188,5 +195,35 @@ export default class Hangman extends Creator {
         let msgDiv = this.create('div', 'message', message);
         
         element.append(msgDiv);
+    }
+
+    checkHealth = () => {
+
+        let healthStatus = this.getElement('.health');
+        let parent = this.getElement(this.place);
+
+        !healthStatus ? console.log('dont have this element') : console.log('have this element');
+        
+        if (!healthStatus) {
+            
+            let element = this.create('div', 'health');
+
+            for (let i = 1; i <= this.health; ++i) {
+                
+                let healthIcon = this.create('i', 'bi bi-heart-fill');
+                    element.append(healthIcon);
+            }
+
+            parent.append(element);
+        } else {
+            console.log(healthStatus);
+
+            let oneIcon = this.getElement('.bi.bi-heart-fill');
+
+            healthStatus.removeChild(oneIcon);
+            
+            let healthIcon = this.create('i', 'bi bi-heart-fill disabled');
+            healthStatus.append(healthIcon);
+        }
     }
 }
