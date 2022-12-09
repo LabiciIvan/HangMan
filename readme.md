@@ -27,7 +27,7 @@ Where I use three classes named Creator, Hangman and Validator.<br>
 
 ---
 
-You can check this [link](https://duckduckgo.com) to test application.
+You can check this [link](https://labiciivan.github.io/HangMan/) to test application.
 
 Or you can clone the repository:
 
